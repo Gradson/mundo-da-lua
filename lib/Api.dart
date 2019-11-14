@@ -1,10 +1,10 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:youtube/model/Video.dart';
+import 'package:mundo_da_lua/model/Video.dart';
 
-const CHAVE_YOUTUBE_API = "AIzaSyBrQSLDqhY4II3lRaYHkCEW5zfNOQtsGZc";
-const ID_CANAL = "UCVHFbqXqoYvEWM1Ddxl0QDg";
+const CHAVE_YOUTUBE_API = "ADD YOUR KEYS";
+const ID_CANAL = "UCZ7sNFg20K6YndKnAPvU5ew";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
 class Api {

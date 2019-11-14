@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mundo_da_lua/delegate/CustomSearchDelegate.dart';
 import 'package:mundo_da_lua/telas/Biblioteca.dart';
 import 'package:mundo_da_lua/telas/EmAlta.dart';
 import 'package:mundo_da_lua/telas/Inicio.dart';
@@ -11,13 +12,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  String _result = "";
   int _indiceAtual = 0;
 
   @override
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      Inicio(),
+      Inicio(_result),
       EmAlta(),
       Inscricao(),
       Biblioteca()
@@ -33,18 +35,24 @@ class _HomeState extends State<Home> {
           "images/youtube.png",
           width: 98,
           height: 22,
+
         ),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () async {
+              String query = await showSearch(context: context, delegate: CustomSearchDelegate());
+              setState(() {
+                _result = query;
+              });
+            },
+          ),
+
+
+          /*IconButton(
             icon: Icon(Icons.videocam),
             onPressed: (){
               print("acao: videocam");
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: (){
-              print("acao: pesquisa");
             },
           ),
           IconButton(
@@ -52,10 +60,15 @@ class _HomeState extends State<Home> {
             onPressed: (){
               print("acao: conta");
             },
-          )
+          )*/
+
+
         ],
       ),
-      body: telas[_indiceAtual],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_indiceAtual]
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _indiceAtual,
         onTap: (index) {
